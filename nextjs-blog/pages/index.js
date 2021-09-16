@@ -4,6 +4,10 @@ import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+
 import { getSortedPostsData } from '../lib/posts'
 
 export async function getStaticProps() {
@@ -22,11 +26,12 @@ export default function Home({allPostsData}) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <div className="container">
    <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
+        <ul className="list-group">
           {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
+            <li className="list-group-item" key={id}>
   <Link href={`/posts/${id}`}>
     <a>{title}</a>
   </Link>
@@ -39,6 +44,7 @@ export default function Home({allPostsData}) {
           ))}
         </ul>
       </section>
+      </div>
     </Layout>
   )
 }
